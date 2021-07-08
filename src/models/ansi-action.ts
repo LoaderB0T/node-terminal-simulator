@@ -11,7 +11,7 @@ export class AnsiAction {
   }
 
   public tryRunAction(t: InternalTerminal, str: string) {
-    const rgx = new RegExp(`^${this._match}(.*)`);
+    const rgx = new RegExp(`^${this._match}([.\\W\\w\\s\\S]*)`);
     const matches = rgx.test(str);
     if (!matches) {
       return false;

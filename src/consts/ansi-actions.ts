@@ -1,5 +1,5 @@
 import { AnsiAction } from '../models/ansi-action';
-import { CLEAR_LINE, DELETE_LINE, INSERT_NEW_LINE, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP } from './ansi-codes';
+import { CLEAR_LINE, DELETE_LINE, INSERT_NEW_LINE, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, SET_COLOR } from './ansi-codes';
 
 export const ansiActions = [
   new AnsiAction(MOVE_UP, (t, allParams) => {
@@ -56,6 +56,9 @@ export const ansiActions = [
   }),
   new AnsiAction(CLEAR_LINE, t => {
     t.setCursorLine(t.getCursorLine().slice(0, t.cursorX));
+  }),
+  new AnsiAction(SET_COLOR, () => {
+    // Do nothing with the colors for now
   })
 ];
 

@@ -16,6 +16,7 @@ export const START_BLINK_CURSOR = `${CONTROL_PREFIX}?12h`;
 export const STOP_BLINK_CURSOR = `${CONTROL_PREFIX}?12l`;
 export const SAVE_CURSOR = `${CONTROL_PREFIX}s`;
 export const RESTORE_CURSOR = `${CONTROL_PREFIX}u`;
+export const SET_COLOR = `${CONTROL_PREFIX}(\\d+)(?:;(\\d+))?m`;
 
 export const KEY_ARROW_UP = `${CONTROL_PREFIX}A`;
 export const KEY_ARROW_DOWN = `${CONTROL_PREFIX}B`;

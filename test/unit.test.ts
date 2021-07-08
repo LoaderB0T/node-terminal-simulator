@@ -1,3 +1,4 @@
+import chalk from 'chalk';
 import {
   DO_CLEAR_LINE,
   DO_DELETE_LINE,
@@ -96,5 +97,14 @@ describe('', () => {
 
     t.write(testText);
     expect(t.text).toStrictEqual(['1test', '2test', 'ooverwrite right', '4test', '5test']);
+  });
+
+  test('colors are ignored', () => {
+    t = new Terminal([100, 3]);
+    const testText =
+      chalk.red('red') + chalk.green('green') + chalk.blue('blue') + chalk.blueBright('blue\nBright') + chalk.bgRed('bgRed');
+
+    t.write(testText);
+    expect(t.text).toStrictEqual(['redgreenblueblue', 'BrightbgRed']);
   });
 });
