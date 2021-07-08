@@ -1,4 +1,11 @@
-import { DO_MOVE_LEFT, DO_MOVE_UP } from '../src/consts/ansi-codes';
+import {
+  DO_CLEAR_LINE,
+  DO_DELETE_LINE,
+  DO_INSERT_NEW_LINE,
+  DO_MOVE_LEFT,
+  DO_MOVE_RIGHT,
+  DO_MOVE_UP
+} from '../src/consts/ansi-codes';
 import { Terminal } from '../src/index';
 
 describe('', () => {
@@ -52,5 +59,42 @@ describe('', () => {
     t.write(DO_MOVE_UP);
     t.write('new\nlines');
     expect(t.text).toStrictEqual(['1', '2', '3', '4', '5 new', 'lines', '7', '8x']);
+  });
+
+  test('random combination #1', () => {
+    const testText =
+      '1test\n2test\n3test\n4test\n5test' +
+      DO_MOVE_LEFT +
+      DO_MOVE_UP +
+      DO_MOVE_UP +
+      DO_MOVE_UP +
+      'overwrite' +
+      DO_MOVE_UP +
+      DO_MOVE_LEFT +
+      DO_MOVE_RIGHT +
+      DO_CLEAR_LINE +
+      'overwrite right';
+
+    t.write(testText);
+    expect(t.text).toStrictEqual(['1overwrite right', 'overwrite', '3test', '4test', '5test']);
+  });
+
+  test('random combination #1 with small height', () => {
+    t = new Terminal([100, 3]);
+    const testText =
+      '1test\n2test\n3test\n4test\n5test' +
+      DO_MOVE_LEFT +
+      DO_MOVE_UP +
+      DO_MOVE_UP +
+      DO_MOVE_UP +
+      'overwrite' +
+      DO_MOVE_UP +
+      DO_MOVE_LEFT +
+      DO_MOVE_RIGHT +
+      DO_CLEAR_LINE +
+      'overwrite right';
+
+    t.write(testText);
+    expect(t.text).toStrictEqual(['1test', '2test', 'ooverwrite right', '4test', '5test']);
   });
 });
