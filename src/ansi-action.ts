@@ -1,6 +1,5 @@
 import { InternalTerminal } from './internal-terminal';
 
-// @internal
 export class AnsiAction {
   private readonly _match: string;
   private readonly _action: (t: InternalTerminal, params: (string | undefined)[]) => void;

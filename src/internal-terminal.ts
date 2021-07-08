@@ -2,7 +2,6 @@ import { ansiActions } from './ansi-actions';
 import { CONTROL_PREFIX_FIRST_CHAR } from './ansi-codes';
 import { TerminalKey, terminalKeyToValue } from './terminal-key';
 
-// @internal
 export class InternalTerminal {
   private readonly _size: [number, number];
   private readonly _cursorPos: [number, number] = [0, 0];
