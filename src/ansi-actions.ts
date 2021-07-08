@@ -39,6 +39,7 @@ export const ansiActions = [
     for (let i = 0; i < amount; i++) {
       t.currentText.splice(t.cursorY, 0, '');
       t.currentText.pop();
+      // todo: pop not always necessary
       t.cursorX = 0;
     }
   }),

@@ -1,7 +1,7 @@
 import { DO_CLEAR_LINE, DO_DELETE_LINE, DO_INSERT_NEW_LINE, DO_MOVE_LEFT, DO_MOVE_RIGHT, DO_MOVE_UP } from './ansi-codes';
 import { Terminal } from './terminal';
 
-const t = new Terminal([100, 8]);
+const t = new Terminal([100, 4]);
 
 // a.write('123456789012345678901234567890');
 
@@ -14,10 +14,13 @@ const testText =
   DO_MOVE_LEFT +
   DO_MOVE_UP +
   DO_MOVE_UP +
+  DO_MOVE_UP +
+  DO_MOVE_UP +
   'overwrite' +
   DO_MOVE_LEFT +
   DO_MOVE_RIGHT +
-  DO_CLEAR_LINE;
+  DO_CLEAR_LINE +
+  'test';
 
 t.write(testText);
 

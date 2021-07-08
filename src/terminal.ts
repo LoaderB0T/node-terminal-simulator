@@ -18,7 +18,7 @@ export class Terminal {
   }
 
   public get text() {
-    return this._internalTerminal.currentText;
+    return [...this._internalTerminal.historyText, ...this._internalTerminal.currentText];
   }
 
   public write(text: string): boolean {

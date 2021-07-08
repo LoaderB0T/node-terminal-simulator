@@ -6,6 +6,7 @@ export class InternalTerminal {
   private readonly _size: [number, number];
   private readonly _cursorPos: [number, number] = [0, 0];
   public currentText: string[] = [''];
+  public historyText: string[] = [];
 
   constructor(size: [number, number]) {
     this._size = size;
@@ -42,7 +43,17 @@ export class InternalTerminal {
     this.cursorY = this.cursorY + 1;
     if (this.getCursorLine() === undefined) {
       this.currentText.push('');
+      this.fixRowCount();
       this.cursorX = 0;
+    }
+  }
+
+  public fixRowCount() {
+    while (this.currentText.length > this.height) {
+      this.historyText.push(this.currentText.shift()!);
+      if (this.cursorY === this.height) {
+        this.cursorY = this.cursorY - 1;
+      }
     }
   }
 
