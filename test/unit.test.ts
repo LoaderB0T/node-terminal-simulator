@@ -1,12 +1,5 @@
 import chalk from 'chalk';
-import {
-  DO_CLEAR_LINE,
-  DO_DELETE_LINE,
-  DO_INSERT_NEW_LINE,
-  DO_MOVE_LEFT,
-  DO_MOVE_RIGHT,
-  DO_MOVE_UP
-} from '../src/consts/ansi-codes';
+import { DO_CLEAR_LINE, DO_MOVE_LEFT, DO_MOVE_RIGHT, DO_MOVE_UP } from '../src/consts/ansi-codes';
 import { Terminal } from '../src/index';
 
 describe('', () => {

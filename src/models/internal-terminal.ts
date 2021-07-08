@@ -96,7 +96,7 @@ export class InternalTerminal {
     for (const ansiBeginning of ansiBeginnings) {
       const modifier = ansiActions.find(x => x.tryRunAction(this, ansiBeginning));
       if (!modifier) {
-        throw new Error('Unknown ansi escape');
+        throw new Error(`Unknown ansi escape: ${ansiBeginning}`);
       }
       this.writeToBuffer(modifier.rest);
     }
