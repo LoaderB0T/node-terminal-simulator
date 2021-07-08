@@ -1,6 +1,7 @@
 import { AnsiAction } from './ansi-action';
 import { MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP } from './ansi-codes';
 
+// @internal
 export const ansiActions = [
   new AnsiAction(MOVE_UP, (t, allParams) => {
     const amount = Number.parseInt(allParams[0] ?? '1');
