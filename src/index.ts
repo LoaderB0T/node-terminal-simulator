@@ -1,2 +1,2 @@
-export * from './terminal';
-export * from './terminal-key';
+export * from './models/terminal';
+export * from './consts/terminal-key';

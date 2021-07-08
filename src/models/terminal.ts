@@ -1,5 +1,5 @@
 import { InternalTerminal } from './internal-terminal';
-import { TerminalKey, terminalKeyToValue } from './terminal-key';
+import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
 
 export class Terminal {
   private readonly _internalTerminal: InternalTerminal;

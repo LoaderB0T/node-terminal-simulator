@@ -1,12 +1,13 @@
-import { ansiActions } from './ansi-actions';
-import { CONTROL_PREFIX_FIRST_CHAR } from './ansi-codes';
-import { TerminalKey, terminalKeyToValue } from './terminal-key';
+import { ansiActions } from '../consts/ansi-actions';
+import { CONTROL_PREFIX_FIRST_CHAR } from '../consts/ansi-codes';
+import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
 
 export class InternalTerminal {
   private readonly _size: [number, number];
   private readonly _cursorPos: [number, number] = [0, 0];
   public currentText: string[] = [''];
   public historyText: string[] = [];
+  public ghostLineCount: number = 0;
 
   constructor(size: [number, number]) {
     this._size = size;
@@ -42,6 +43,9 @@ export class InternalTerminal {
   public insertLine() {
     this.cursorY = this.cursorY + 1;
     if (this.getCursorLine() === undefined) {
+      if (this.ghostLineCount > 0) {
+        this.ghostLineCount--;
+      }
       this.currentText.push('');
       this.fixRowCount();
       this.cursorX = 0;

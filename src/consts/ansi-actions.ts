@@ -1,4 +1,4 @@
-import { AnsiAction } from './ansi-action';
+import { AnsiAction } from '../models/ansi-action';
 import { CLEAR_LINE, DELETE_LINE, INSERT_NEW_LINE, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP } from './ansi-codes';
 
 export const ansiActions = [
@@ -38,8 +38,11 @@ export const ansiActions = [
     const amount = Number.parseInt(allParams[0] ?? '1');
     for (let i = 0; i < amount; i++) {
       t.currentText.splice(t.cursorY, 0, '');
-      t.currentText.pop();
-      // todo: pop not always necessary
+      if (t.ghostLineCount > 0) {
+        t.ghostLineCount--;
+      } else {
+        t.currentText.pop();
+      }
       t.cursorX = 0;
     }
   }),
@@ -48,6 +51,7 @@ export const ansiActions = [
     for (let i = 0; i < amount; i++) {
       t.currentText.splice(t.cursorY, 1);
       t.cursorX = 0;
+      t.ghostLineCount++;
     }
   }),
   new AnsiAction(CLEAR_LINE, t => {
