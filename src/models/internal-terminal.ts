@@ -48,8 +48,8 @@ export class InternalTerminal {
       }
       this.currentText.push('');
       this.fixRowCount();
-      this.cursorX = 0;
     }
+    this.cursorX = 0;
   }
 
   public fixRowCount() {
@@ -76,8 +76,11 @@ export class InternalTerminal {
     if (this.getCursorLine().length === this.width && this.cursorX === this.width) {
       this.insertLine();
     }
-    const a = this.getCursorLine().substr(0, this.cursorX) + char + this.getCursorLine().substr(this.cursorX + 1);
-    this.setCursorLine(a);
+    const fillEmptySpace =
+      this.cursorX > this.getCursorLine().length ? ' '.repeat(this.cursorX - this.getCursorLine().length) : '';
+    const newLineText =
+      this.getCursorLine().substr(0, this.cursorX) + fillEmptySpace + char + this.getCursorLine().substr(this.cursorX + 1);
+    this.setCursorLine(newLineText);
     this.cursorX = this.cursorX + 1;
   }
 
