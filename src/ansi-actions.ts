@@ -1,5 +1,5 @@
 import { AnsiAction } from './ansi-action';
-import { MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP } from './ansi-codes';
+import { CLEAR_LINE, DELETE_LINE, INSERT_NEW_LINE, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP } from './ansi-codes';
 
 export const ansiActions = [
   new AnsiAction(MOVE_UP, (t, allParams) => {
@@ -33,5 +33,31 @@ export const ansiActions = [
         t.cursorX = t.cursorX + 1;
       }
     }
+  }),
+  new AnsiAction(INSERT_NEW_LINE, (t, allParams) => {
+    const amount = Number.parseInt(allParams[0] ?? '1');
+    for (let i = 0; i < amount; i++) {
+      t.currentText.splice(t.cursorY, 0, '');
+      t.currentText.pop();
+      t.cursorX = 0;
+    }
+  }),
+  new AnsiAction(DELETE_LINE, (t, allParams) => {
+    const amount = Number.parseInt(allParams[0] ?? '1');
+    for (let i = 0; i < amount; i++) {
+      t.currentText.splice(t.cursorY, 1);
+      t.cursorX = 0;
+    }
+  }),
+  new AnsiAction(CLEAR_LINE, t => {
+    t.setCursorLine(t.getCursorLine().slice(0, t.cursorX));
   })
 ];
+
+// export const HIDE_CURSOR = `${CONTROL_PREFIX}?25l`;
+// export const SHOW_CURSOR = `${CONTROL_PREFIX}?25h`;
+
+// export const START_BLINK_CURSOR = `${CONTROL_PREFIX}?12h`;
+// export const STOP_BLINK_CURSOR = `${CONTROL_PREFIX}?12l`;
+// export const SAVE_CURSOR = `${CONTROL_PREFIX}s`;
+// export const RESTORE_CURSOR = `${CONTROL_PREFIX}u`;
