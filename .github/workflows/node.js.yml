@@ -36,12 +36,6 @@ jobs:
       if: always()
       with:
         files: junit.xml
-    - name: Upload a Build Artifact
-      uses: actions/upload-artifact@v2.2.4
+    - uses: JS-DevTools/npm-publish@v1
       with:
-        path: |
-          **/*
-          !src/**
-          !node_modules/**
-        if-no-files-found: error
-        retention-days: 5
+        token: ${{ secrets.NPM_TOKEN }}
