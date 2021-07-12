@@ -28,7 +28,11 @@ export class Terminal {
   }
 
   public sendKey(key: TerminalKey) {
-    this.write(terminalKeyToValue(key));
+    process.stdin.emit('data', terminalKeyToValue(key));
+  }
+
+  public sendText(text: string) {
+    process.stdin.emit('data', text);
   }
 
   public redirectStdout(stdout?: Stdout) {
