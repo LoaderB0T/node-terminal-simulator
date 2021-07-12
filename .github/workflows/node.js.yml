@@ -39,3 +39,9 @@ jobs:
     - uses: JS-DevTools/npm-publish@v1
       with:
         token: ${{ secrets.NPM_TOKEN }}
+      if: ${{ matrix.node-version == '14.x' }}
+    - uses: GoogleCloudPlatform/release-please-action@v2
+      with:
+        release-type: node
+        package-name: node-terminal-emulator
+      if: ${{ matrix.node-version == '14.x' && steps.publish.outputs.type != 'none' }}
