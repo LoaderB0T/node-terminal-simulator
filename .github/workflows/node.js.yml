@@ -42,3 +42,9 @@ jobs:
       if: always()
       with:
         files: junit.xml
+    - name: Upload a Build Artifact
+      uses: actions/upload-artifact@v2.2.4
+      with:
+        path: .
+        if-no-files-found: error
+        retention-days: 5
