@@ -1,5 +1,6 @@
 import { InternalTerminal } from './internal-terminal';
 import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
+import { Stdout } from './stdout';
 
 export class Terminal {
   private readonly _internalTerminal: InternalTerminal;
@@ -30,18 +31,20 @@ export class Terminal {
     this.write(terminalKeyToValue(key));
   }
 
-  public redirectStdout() {
-    this._originalStdout ??= process.stdout.write;
-    this._originalStdWindowSize ??= process.stdout.getWindowSize;
-    process.stdout.write = (text: string) => this.write(text);
-    process.stdout.getWindowSize = () => [this.width, this.height];
+  public redirectStdout(stdout?: Stdout) {
+    stdout ??= process.stdout;
+    this._originalStdout ??= stdout.write;
+    this._originalStdWindowSize ??= stdout.getWindowSize;
+    stdout.write = (text: string) => this.write(text);
+    stdout.getWindowSize = () => [this.width, this.height];
   }
 
-  public restoreStdout() {
+  public restoreStdout(stdout?: Stdout) {
+    stdout ??= process.stdout;
     if (!this._originalStdout || !this._originalStdWindowSize) {
       throw new Error('Cannot restore stdout because it was not replaced by this temrinal instance');
     }
-    process.stdout.write = this._originalStdout;
-    process.stdout.getWindowSize = this._originalStdWindowSize;
+    stdout.write = this._originalStdout;
+    stdout.getWindowSize = this._originalStdWindowSize;
   }
 }
