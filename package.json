@@ -1,7 +1,7 @@
 {
   "name": "node-terminal-emulator",
-  "version": "0.0.14",
-  "description": "Emulate the terminal output including special ANSI codes",
+  "version": "0.0.15",
+  "description": "Emulate and assert the terminal output including many special ANSI codes",
   "main": "lib/index.js",
   "files": [
     "lib"
