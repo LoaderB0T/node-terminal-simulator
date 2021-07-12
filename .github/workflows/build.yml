@@ -39,4 +39,4 @@ jobs:
         id: publish
         with:
           token: ${{ secrets.NPM_TOKEN }}
-        if: ${{ matrix.node-version == '14.x' }}
+        if: ${{ matrix.node-version == '14.x' && github.ref == 'refs/heads/main' }}
