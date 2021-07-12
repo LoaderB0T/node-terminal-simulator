@@ -1,5 +1,9 @@
-src
+.github
 .vscode
+node_modules
+src
+test
 .eslintignore
 .eslintrc.json
 tsconfig.json
+yarn.lock
