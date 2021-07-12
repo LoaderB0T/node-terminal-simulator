@@ -26,15 +26,15 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install
-      uses: actions/github-script@v4.0.2
+      uses: Amadevus/pwsh-script@v2.0.1
       with:
         script: yarn
     - name: Build
-      uses: actions/github-script@v4.0.2
+      uses: Amadevus/pwsh-script@v2.0.1
       with:
         script: yarn build
     - name: Test
-      uses: actions/github-script@v4.0.2
+      uses: Amadevus/pwsh-script@v2.0.1
       with:
         script: yarn test
     - name: Publish Unit Test Results
