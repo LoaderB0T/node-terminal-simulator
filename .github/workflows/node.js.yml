@@ -26,17 +26,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
     - name: Install
-      uses: Amadevus/pwsh-script@v2.0.1
-      with:
-        script: yarn
+      run: yarn
     - name: Build
-      uses: Amadevus/pwsh-script@v2.0.1
-      with:
-        script: yarn build
+      run: yarn build
     - name: Test
-      uses: Amadevus/pwsh-script@v2.0.1
-      with:
-        script: yarn test
+      run: yarn test
     - name: Publish Unit Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
