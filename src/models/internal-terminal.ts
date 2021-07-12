@@ -54,7 +54,7 @@ export class InternalTerminal {
 
   public fixRowCount() {
     while (this.currentText.length > this.height) {
-      this.historyText.push(this.currentText.shift()!);
+      this.historyText.push(this.currentText.shift()!.trimEnd());
       if (this.cursorY === this.height) {
         this.cursorY = this.cursorY - 1;
       }

@@ -20,7 +20,7 @@ export class Terminal {
   }
 
   public get text() {
-    return [...this._internalTerminal.historyText, ...this._internalTerminal.currentText];
+    return [...this._internalTerminal.historyText, ...this._internalTerminal.currentText.map(x => x.trimEnd())];
   }
 
   public write(text: string): boolean {
@@ -33,18 +33,23 @@ export class Terminal {
 
   public redirectStdout(stdout?: Stdout) {
     stdout ??= process.stdout;
-    this._originalStdout ??= stdout.write;
-    this._originalStdWindowSize ??= stdout.getWindowSize;
+    if ((stdout as any)['__node_terminal_emulator_redirected']) {
+      this.restoreStdout(stdout);
+    }
+    (stdout as any)['__node_terminal_emulator_redirected'] = true;
+    this._originalStdout = stdout.write;
+    this._originalStdWindowSize = stdout.getWindowSize;
     stdout.write = (text: string) => this.write(text);
     stdout.getWindowSize = () => [this.width, this.height];
   }
 
   public restoreStdout(stdout?: Stdout) {
     stdout ??= process.stdout;
-    if (!this._originalStdout || !this._originalStdWindowSize) {
-      throw new Error('Cannot restore stdout because it was not replaced by this temrinal instance');
+    if (!(stdout as any)['__node_terminal_emulator_redirected']) {
+      throw new Error('Stdout has not been redirected');
     }
-    stdout.write = this._originalStdout;
-    stdout.getWindowSize = this._originalStdWindowSize;
+    stdout.write = this._originalStdout!;
+    stdout.getWindowSize = this._originalStdWindowSize!;
+    (stdout as any)['__node_terminal_emulator_redirected'] = undefined;
   }
 }
