@@ -45,6 +45,9 @@ jobs:
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v2.2.4
       with:
-        path: '**/*', '!src/**', '!node_modules/**'
+        path: |
+          **/*
+          !src/**
+          !node_modules/**
         if-no-files-found: error
         retention-days: 5
