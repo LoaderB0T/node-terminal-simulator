@@ -88,7 +88,7 @@ export class InternalTerminal {
 
   public write(text: string): boolean {
     if (Settings.logToFile) {
-      appendFileSync(Settings.logToFile, text.replaceAll(CONTROL_PREFIX_FIRST_CHAR, ''));
+      appendFileSync(Settings.logToFile, text.replace(CONTROL_PREFIX_FIRST_CHAR, ''));
     }
     if (text.indexOf(CONTROL_PREFIX_FIRST_CHAR) === -1) {
       this.writeToBuffer(text);
