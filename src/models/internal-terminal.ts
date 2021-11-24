@@ -1,6 +1,8 @@
 import { ansiActions } from '../consts/ansi-actions';
 import { CONTROL_PREFIX_FIRST_CHAR } from '../consts/ansi-codes';
 import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
+import { Settings } from './settings';
+import { appendFileSync } from 'fs';
 
 export class InternalTerminal {
   private readonly _size: [number, number];
@@ -85,6 +87,9 @@ export class InternalTerminal {
   }
 
   public write(text: string): boolean {
+    if (Settings.logToFile) {
+      appendFileSync(Settings.logToFile, text);
+    }
     if (text.indexOf(CONTROL_PREFIX_FIRST_CHAR) === -1) {
       this.writeToBuffer(text);
       return true;

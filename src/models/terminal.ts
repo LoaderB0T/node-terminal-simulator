@@ -1,6 +1,7 @@
 import { InternalTerminal } from './internal-terminal';
 import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
 import { Stdout } from './stdout';
+import { Settings } from './settings';
 
 export class Terminal {
   private readonly _internalTerminal: InternalTerminal;
@@ -9,6 +10,10 @@ export class Terminal {
 
   constructor(size: [number, number]) {
     this._internalTerminal = new InternalTerminal(size);
+  }
+
+  public static logToFile(filePath: string) {
+    Settings.logToFile = filePath;
   }
 
   public get width() {
