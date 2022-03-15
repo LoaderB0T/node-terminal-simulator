@@ -60,10 +60,10 @@ export class Terminal {
 
   public redirectStdout(stdout?: Stdout) {
     stdout ??= process.stdout;
-    if ((stdout as any)['__node_terminal_emulator_redirected']) {
+    if ((stdout as any)['__node_terminal_simulator_redirected']) {
       this.restoreStdout(stdout);
     }
-    (stdout as any)['__node_terminal_emulator_redirected'] = true;
+    (stdout as any)['__node_terminal_simulator_redirected'] = true;
     this._originalStdout = stdout.write;
     this._originalStdWindowSize = stdout.getWindowSize;
     stdout.write = (text: string) => this.write(text);
@@ -72,11 +72,11 @@ export class Terminal {
 
   public restoreStdout(stdout?: Stdout) {
     stdout ??= process.stdout;
-    if (!(stdout as any)['__node_terminal_emulator_redirected']) {
+    if (!(stdout as any)['__node_terminal_simulator_redirected']) {
       throw new Error('Stdout has not been redirected');
     }
     stdout.write = this._originalStdout!;
     stdout.getWindowSize = this._originalStdWindowSize!;
-    (stdout as any)['__node_terminal_emulator_redirected'] = undefined;
+    (stdout as any)['__node_terminal_simulator_redirected'] = undefined;
   }
 }
