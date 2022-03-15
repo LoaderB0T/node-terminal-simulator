@@ -1,8 +1,9 @@
 import { ansiActions } from '../consts/ansi-actions';
 import { CONTROL_PREFIX_FIRST_CHAR } from '../consts/ansi-codes';
-import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
+import { TerminalKey } from '../consts/terminal-key';
 import { Settings } from './settings';
 import { appendFileSync } from 'fs';
+import { terminalKeyToValue } from '../consts/terminal-key-to-value';
 
 export class InternalTerminal {
   private readonly _size: [number, number];
