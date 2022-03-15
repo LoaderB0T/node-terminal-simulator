@@ -1,6 +1,6 @@
 {
   "name": "node-terminal-simulator",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simulates and assert the terminal output including many special ANSI codes",
   "main": "lib/index.js",
   "files": [
