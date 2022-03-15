@@ -1,43 +1,34 @@
-import {
-  DO_CLEAR_LINE,
-  DO_DELETE_LINE,
-  DO_INSERT_NEW_LINE,
-  DO_MOVE_DOWN,
-  DO_MOVE_LEFT,
-  DO_MOVE_RIGHT,
-  DO_MOVE_UP
-} from './consts/ansi-codes';
+import { assert } from 'console';
+import { DO_DELETE_LINE, DO_MOVE_LEFT, DO_MOVE_UP } from './consts/ansi-codes';
 import { Terminal } from './models/terminal';
 
 const t = new Terminal([100, 8]);
 
-// a.write('123456789012345678901234567890');
+t.write('This is a test');
+// Output:
+// This is a test
 
-// a.write('\u001b[999Dtest');
+t.write('. Additional new text.'); // Same line
+// Output:
+// This is a test. Additional text.
 
-// console.log(a.text);
+t.write('\n'); // New line
+t.write('This is a new line.');
+// Output:
+// This is a test. Additional text.
+// This is a new line.
 
-const testText =
-  '1test\n2test\n3test\n4test\n5test' +
-  DO_MOVE_LEFT +
-  DO_MOVE_UP +
-  DO_MOVE_UP +
-  DO_MOVE_UP +
-  DO_MOVE_UP +
-  'overwrite' +
-  DO_MOVE_LEFT +
-  DO_MOVE_RIGHT +
-  DO_CLEAR_LINE +
-  'test' +
-  DO_DELETE_LINE +
-  DO_INSERT_NEW_LINE +
-  'hi';
+t.write(DO_MOVE_UP); // \u001b[A
+t.write(DO_MOVE_LEFT); // \u001b[999D
+t.write('This overwrites the first line.');
+// Output:
+// This overwrites the first line.text.
+// This is a new line.
 
-t.write(testText);
+t.write(DO_DELETE_LINE); // \u001b[1L
+// Output:
+// This is a new line.
 
-console.log('------------------------------------------------');
-process.stdout.write(testText);
-process.stdout.write(DO_MOVE_DOWN.repeat(9));
-console.log();
-console.log('------------------------------------------------');
-console.log(t.text.join('\n'));
+console.log(t.text);
+
+assert(t.text === 'This is a new line.', 't.text should be "This is a new line."');

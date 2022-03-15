@@ -2,6 +2,8 @@ import { InternalTerminal } from './internal-terminal';
 import { TerminalKey, terminalKeyToValue } from '../consts/terminal-key';
 import { Stdout } from './stdout';
 import { Settings } from './settings';
+import { AnsiAction } from './ansi-action';
+import { ansiActions } from '../consts/ansi-actions';
 
 export class Terminal {
   private readonly _internalTerminal: InternalTerminal;
@@ -16,6 +18,10 @@ export class Terminal {
     Settings.logToFile = filePath;
   }
 
+  public static addAnsiAction(action: AnsiAction) {
+    ansiActions.push(action);
+  }
+
   public get width() {
     return this._internalTerminal.width;
   }
@@ -24,8 +30,20 @@ export class Terminal {
     return this._internalTerminal.height;
   }
 
+  public get lines() {
+    return this._internalTerminal.currentText.map(x => x.trimEnd());
+  }
+
   public get text() {
-    return [...this._internalTerminal.historyText, ...this._internalTerminal.currentText.map(x => x.trimEnd())];
+    return this.lines.join('\n');
+  }
+
+  public get allLines() {
+    return [...this._internalTerminal.historyText, ...this.lines];
+  }
+
+  public get allText() {
+    return this.allLines.join('\n');
   }
 
   public write(text: string): boolean {
