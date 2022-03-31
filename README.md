@@ -1,4 +1,6 @@
 [![npm](https://img.shields.io/npm/v/node-terminal-simulator?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/node-terminal-simulator)
+[![LGTM Grade](https://img.shields.io/lgtm/grade/javascript/github/LoaderB0T/node-terminal-simulator?label=Code%20Quality&style=for-the-badge)](https://lgtm.com/projects/g/LoaderB0T/node-terminal-simulator/?mode=list)
+[![LGTM Alerts](https://img.shields.io/lgtm/alerts/github/LoaderB0T/node-terminal-simulator?style=for-the-badge)](https://lgtm.com/projects/g/LoaderB0T/node-terminal-simulator/?mode=list)
 
 # node-terminal-simulator
 
