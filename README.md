@@ -96,3 +96,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Janik Schumacher - [@LoaderB0T](https://twitter.com/LoaderB0T) - [linkedin](https://www.linkedin.com/in/janikschumacher/)
 
 Project Link: [https://github.com/LoaderB0T/node-terminal-simulator](https://github.com/LoaderB0T/node-terminal-simulator)
+
