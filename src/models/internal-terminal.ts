@@ -65,8 +65,7 @@ export class InternalTerminal {
   }
 
   public writeToBuffer(text: string) {
-    for (let i = 0; i < text.length; i++) {
-      const char = text[i];
+    for (const char of text) {
       if (char.match(/[\r\n]/)) {
         this.insertLine();
       } else {
@@ -82,7 +81,7 @@ export class InternalTerminal {
     const fillEmptySpace =
       this.cursorX > this.getCursorLine().length ? ' '.repeat(this.cursorX - this.getCursorLine().length) : '';
     const newLineText =
-      this.getCursorLine().substr(0, this.cursorX) + fillEmptySpace + char + this.getCursorLine().substr(this.cursorX + 1);
+      this.getCursorLine().substring(0, this.cursorX) + fillEmptySpace + char + this.getCursorLine().substring(this.cursorX + 1);
     this.setCursorLine(newLineText);
     this.cursorX = this.cursorX + 1;
   }

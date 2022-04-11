@@ -61,11 +61,3 @@ export const ansiActions = [
     // Do nothing with the colors for now
   })
 ];
-
-// export const HIDE_CURSOR = `${CONTROL_PREFIX}?25l`;
-// export const SHOW_CURSOR = `${CONTROL_PREFIX}?25h`;
-
-// export const START_BLINK_CURSOR = `${CONTROL_PREFIX}?12h`;
-// export const STOP_BLINK_CURSOR = `${CONTROL_PREFIX}?12l`;
-// export const SAVE_CURSOR = `${CONTROL_PREFIX}s`;
-// export const RESTORE_CURSOR = `${CONTROL_PREFIX}u`;
