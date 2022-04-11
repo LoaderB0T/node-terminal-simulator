@@ -1,4 +1,5 @@
 [![npm](https://img.shields.io/npm/v/node-terminal-simulator?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/node-terminal-simulator)
+[![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/LoaderB0T_node-terminal-simulator?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/summary/new_code?id=LoaderB0T_node-terminal-simulator)
 
 # node-terminal-simulator
 
@@ -95,3 +96,4 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Janik Schumacher - [@LoaderB0T](https://twitter.com/LoaderB0T) - [linkedin](https://www.linkedin.com/in/janikschumacher/)
 
 Project Link: [https://github.com/LoaderB0T/node-terminal-simulator](https://github.com/LoaderB0T/node-terminal-simulator)
+
