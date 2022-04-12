@@ -79,12 +79,14 @@ export const ansiActions = [
   new AnsiAction(SET_COLOR, (t, allParams) => {
     const styleCodeStr = allParams[0] ?? '0';
     const styleCode = Number.parseInt(styleCodeStr);
+
     const styleNameStart = Object.keys(ansiStyles)
       .map(x => x as AnsiStyleKind)
       .find(key => ansiStyles[key][0] === styleCode);
     const styleNamesEnd = Object.keys(ansiStyles)
       .map(x => x as AnsiStyleKind)
-      .filter(key => ansiStyles[key as AnsiStyleKind][1] === styleCode);
+      .filter(key => ansiStyles[key][1] === styleCode);
+
     if (styleNameStart) {
       if (!t.activeStyles.some(x => x === styleNameStart)) {
         t.activeStyles.push(styleNameStart);
