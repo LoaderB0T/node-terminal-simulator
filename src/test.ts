@@ -1,34 +1,16 @@
-import { assert } from 'console';
-import { DO_DELETE_LINE, DO_MOVE_LEFT, DO_MOVE_UP } from './consts/ansi-codes';
+import chalk from 'chalk';
+import { DO_MOVE_LEFT } from './consts/ansi-codes';
 import { Terminal } from './models/terminal';
 
 const t = new Terminal([100, 8]);
 
-t.write('This is a test');
-// Output:
-// This is a test
+const input = [chalk.blue('123456789'), DO_MOVE_LEFT, DO_MOVE_LEFT, chalk.red('a'), DO_MOVE_LEFT, DO_MOVE_LEFT, 'b', '\n', 'abc'];
 
-t.write('. Additional new text.'); // Same line
-// Output:
-// This is a test. Additional text.
+const text = input.join('');
 
-t.write('\n'); // New line
-t.write('This is a new line.');
-// Output:
-// This is a test. Additional text.
-// This is a new line.
+console.log(text);
+console.log();
 
-t.write(DO_MOVE_UP); // \u001b[A
-t.write(DO_MOVE_LEFT); // \u001b[999D
-t.write('This overwrites the first line.');
-// Output:
-// This overwrites the first line.text.
-// This is a new line.
-
-t.write(DO_DELETE_LINE); // \u001b[1L
-// Output:
-// This is a new line.
-
-console.log(t.text);
-
-assert(t.text === 'This is a new line.', 't.text should be "This is a new line."');
+t.write(text);
+console.log(t.getStyledText());
+console.log();

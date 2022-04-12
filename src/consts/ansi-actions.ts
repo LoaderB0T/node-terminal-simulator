@@ -1,5 +1,18 @@
 import { AnsiAction } from '../models/ansi-action';
-import { CLEAR_LINE, DELETE_LINE, INSERT_NEW_LINE, MOVE_DOWN, MOVE_LEFT, MOVE_RIGHT, MOVE_UP, SET_COLOR } from './ansi-codes';
+import { AnsiStyleKind } from '../types/ansi-style';
+import {
+  CLEAR_LINE,
+  DELETE_LINE,
+  HIDE_CURSOR,
+  INSERT_NEW_LINE,
+  MOVE_DOWN,
+  MOVE_LEFT,
+  MOVE_RIGHT,
+  MOVE_UP,
+  SET_COLOR,
+  SHOW_CURSOR
+} from './ansi-codes';
+import { ansiStyles } from './ansi-styles';
 
 export const ansiActions = [
   new AnsiAction(MOVE_UP, (t, allParams) => {
@@ -57,7 +70,33 @@ export const ansiActions = [
   new AnsiAction(CLEAR_LINE, t => {
     t.setCursorLine(t.getCursorLine().slice(0, t.cursorX));
   }),
-  new AnsiAction(SET_COLOR, () => {
-    // Do nothing with the colors for now
+  new AnsiAction(HIDE_CURSOR, () => {
+    // ignore for now
+  }),
+  new AnsiAction(SHOW_CURSOR, () => {
+    // ignore for now
+  }),
+  new AnsiAction(SET_COLOR, (t, allParams) => {
+    const styleCodeStr = allParams[0] ?? '0';
+    const styleCode = Number.parseInt(styleCodeStr);
+    const styleNameStart = Object.keys(ansiStyles)
+      .map(x => x as AnsiStyleKind)
+      .find(key => ansiStyles[key][0] === styleCode);
+    const styleNamesEnd = Object.keys(ansiStyles)
+      .map(x => x as AnsiStyleKind)
+      .filter(key => ansiStyles[key as AnsiStyleKind][1] === styleCode);
+    if (styleNameStart) {
+      if (!t.activeStyles.some(x => x === styleNameStart)) {
+        t.activeStyles.push(styleNameStart);
+      }
+    }
+    if (styleNamesEnd) {
+      styleNamesEnd.forEach(styleNameEnd => {
+        const index = t.activeStyles.findIndex(x => x === styleNameEnd);
+        if (index > -1) {
+          t.activeStyles.splice(index, 1);
+        }
+      });
+    }
   })
 ];

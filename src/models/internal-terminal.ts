@@ -1,13 +1,17 @@
 import { ansiActions } from '../consts/ansi-actions';
-import { CONTROL_PREFIX_FIRST_CHAR } from '../consts/ansi-codes';
+import { CONTROL_PREFIX_FIRST_CHAR, DO_CONTROL_PREFIX } from '../consts/ansi-codes';
 import { TerminalKey } from '../consts/terminal-key';
 import { Settings } from './settings';
 import { appendFileSync } from 'fs';
 import { terminalKeyToValue } from '../consts/terminal-key-to-value';
+import { AnsiStyleKind, AnsiStyleMap } from '../types/ansi-style';
+import { ansiStyles } from '../consts/ansi-styles';
 
 export class InternalTerminal {
   private readonly _size: [number, number];
   private readonly _cursorPos: [number, number] = [0, 0];
+  public readonly currentStyles: AnsiStyleMap = [];
+  public readonly activeStyles: AnsiStyleKind[] = [];
   public currentText: string[] = [''];
   public historyText: string[] = [];
   public ghostLineCount: number = 0;
@@ -83,6 +87,17 @@ export class InternalTerminal {
     const newLineText =
       this.getCursorLine().substring(0, this.cursorX) + fillEmptySpace + char + this.getCursorLine().substring(this.cursorX + 1);
     this.setCursorLine(newLineText);
+    const existingStyles = this.currentStyles.find(s => s.x === this.cursorX && s.y === this.cursorY);
+
+    if (existingStyles) {
+      existingStyles.styles = [...this.activeStyles];
+    } else {
+      this.currentStyles.push({
+        x: this.cursorX,
+        y: this.cursorY,
+        styles: [...this.activeStyles]
+      });
+    }
     this.cursorX = this.cursorX + 1;
   }
 
@@ -111,5 +126,28 @@ export class InternalTerminal {
 
   public sendKey(key: TerminalKey) {
     this.write(terminalKeyToValue(key));
+  }
+
+  public getStylesAt(line: number, char: number): AnsiStyleKind[] {
+    return this.currentStyles.find(s => s.x === char && s.y === line)?.styles || [];
+  }
+
+  public getStyledText(): string {
+    const resultLines: string[] = [];
+    for (let i = 0; i < this.currentText.length; i++) {
+      resultLines.push('');
+      const line = this.currentText[i];
+      for (let j = 0; j < line.length; j++) {
+        const char = line[j];
+        const styles = this.getStylesAt(i, j);
+        let outStr = char;
+        styles.forEach(style => {
+          const ansiStyle = ansiStyles[style];
+          outStr = `${DO_CONTROL_PREFIX}${ansiStyle[0]}m${outStr}${DO_CONTROL_PREFIX}${ansiStyle[1]}m`;
+        });
+        resultLines[i] += outStr;
+      }
+    }
+    return resultLines.join('\n');
   }
 }
