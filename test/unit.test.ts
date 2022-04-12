@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { DO_CLEAR_LINE, DO_MOVE_LEFT, DO_MOVE_RIGHT, DO_MOVE_UP } from '../src/consts/ansi-codes';
+import { DO_CLEAR_LINE, DO_MOVE_LEFT_FULLY, DO_MOVE_RIGHT, DO_MOVE_UP } from '../src/consts/ansi-codes';
 import { Terminal } from '../src/index';
 
 describe('', () => {
@@ -42,7 +42,7 @@ describe('', () => {
     t.write(DO_MOVE_UP);
     t.write(DO_MOVE_UP);
     t.write(DO_MOVE_UP);
-    t.write(DO_MOVE_LEFT);
+    t.write(DO_MOVE_LEFT_FULLY);
     t.write('new\nlines');
     expect(t.lines).toStrictEqual(['3', '4', 'new', 'lines', '7', '8']);
     expect(t.allLines).toStrictEqual(['1', '2', '3', '4', 'new', 'lines', '7', '8']);
@@ -61,13 +61,13 @@ describe('', () => {
   test('random combination #1', () => {
     const testText =
       '1test\n2test\n3test\n4test\n5test' +
-      DO_MOVE_LEFT +
+      DO_MOVE_LEFT_FULLY +
       DO_MOVE_UP +
       DO_MOVE_UP +
       DO_MOVE_UP +
       'overwrite' +
       DO_MOVE_UP +
-      DO_MOVE_LEFT +
+      DO_MOVE_LEFT_FULLY +
       DO_MOVE_RIGHT +
       DO_CLEAR_LINE +
       'overwrite right';
@@ -80,13 +80,13 @@ describe('', () => {
     t = new Terminal([100, 3]);
     const testText =
       '1test\n2test\n3test\n4test\n5test' +
-      DO_MOVE_LEFT +
+      DO_MOVE_LEFT_FULLY +
       DO_MOVE_UP +
       DO_MOVE_UP +
       DO_MOVE_UP +
       'overwrite' +
       DO_MOVE_UP +
-      DO_MOVE_LEFT +
+      DO_MOVE_LEFT_FULLY +
       DO_MOVE_RIGHT +
       DO_CLEAR_LINE +
       'overwrite right';

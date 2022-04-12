@@ -40,7 +40,7 @@ This project is by no means complete, but it's a good starting point. Feel free 
 ## Usage Example 🚀
 
 ```typescript
-import { Terminal, DO_DELETE_LINE, DO_MOVE_LEFT, DO_MOVE_UP } from 'node-terminal-simulator';
+import { Terminal, DO_DELETE_LINE, DO_MOVE_LEFT_FULLY, DO_MOVE_UP } from 'node-terminal-simulator';
 
 const t = new Terminal([100, 8]);
 
@@ -59,7 +59,7 @@ t.write('This is a new line.');
 // This is a new line.
 
 t.write(DO_MOVE_UP); // \u001b[A
-t.write(DO_MOVE_LEFT); // \u001b[999D
+t.write(DO_MOVE_LEFT_FULLY); // \u001b[999D
 t.write('This overwrites the first line.');
 // Output:
 // This overwrites the first line.text.
@@ -96,4 +96,3 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 Janik Schumacher - [@LoaderB0T](https://twitter.com/LoaderB0T) - [linkedin](https://www.linkedin.com/in/janikschumacher/)
 
 Project Link: [https://github.com/LoaderB0T/node-terminal-simulator](https://github.com/LoaderB0T/node-terminal-simulator)
-
