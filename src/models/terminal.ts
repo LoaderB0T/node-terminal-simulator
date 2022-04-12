@@ -76,6 +76,22 @@ export class Terminal {
   }
 
   /**
+   * @param line The zero based index of the line.
+   * @param char The zero based index of the character.
+   * @returns An array of the styles that are applied to the character at the given line and char.
+   */
+  public getStylesAt(line: number, char: number) {
+    return this._internalTerminal.getStylesAt(line, char);
+  }
+
+  /**
+   * Get the currently visible text in the terminal with ANSI escape codes for styling.
+   */
+  public getStyledText() {
+    return this._internalTerminal.getStyledText();
+  }
+
+  /**
    * Write text to the terminal. Supports ANSI escape codes.
    * @param text The text to write.
    */

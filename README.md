@@ -17,6 +17,8 @@ This small package provides a simple way to simulate the behavior of a terminal 
 
 ✅ Easily assert the expected current displayed text in the terminal.
 
+✅ Assert the color or style of any character visible in the simulated terminal.
+
 ✅ Send keys to the terminal to simulate user input.
 
 ✅ Accurately tracks the cursor position.
@@ -25,13 +27,15 @@ This small package provides a simple way to simulate the behavior of a terminal 
 
 ✅ Easily extensible with custom escape sequences.
 
+✅ Easily redirect stdout to the simulated terminal.
+
 This project is by no means complete, but it's a good starting point. Feel free to open an issue or pull request if you have any suggestions for improvements like new escape sequences.
 
 ## Limitations ⚠️
 
-🔒 Escape sequences for colors are removed from the output. (The text will be there, but without any color information.)
+🔒 Escape sequences for colors (and other styles) are removed from the output. (You can still assert styles by using the `getStylesAt(line, char)` method on the `Terminal` instance.)
 
-🔒 Many escape sequences are not recognized. (Feel free to contribute 😊)
+🔒 Some escape sequences are not recognized. (Feel free to contribute 😊)
 
 ## Built With 🔧
 
@@ -73,6 +77,8 @@ console.log(t.text);
 
 assert(t.text === 'This is a new line.', 't.text should be "This is a new line."');
 ```
+
+TODO: Add advanced usage examples.
 
 ## Contributing 🧑🏻‍💻
 

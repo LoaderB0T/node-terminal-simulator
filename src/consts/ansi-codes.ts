@@ -9,11 +9,11 @@ export const MOVE_LEFT = `${CONTROL_PREFIX}(\\d*)D`;
 export const INSERT_NEW_LINE = `${CONTROL_PREFIX}(\\d*)L`;
 export const DELETE_LINE = `${CONTROL_PREFIX}(\\d*)M`;
 export const CLEAR_LINE = `${CONTROL_PREFIX}0K`;
-export const HIDE_CURSOR = `${CONTROL_PREFIX}?25l`;
-export const SHOW_CURSOR = `${CONTROL_PREFIX}?25h`;
+export const HIDE_CURSOR = `${CONTROL_PREFIX}\\?25l`;
+export const SHOW_CURSOR = `${CONTROL_PREFIX}\\?25h`;
 
-export const START_BLINK_CURSOR = `${CONTROL_PREFIX}?12h`;
-export const STOP_BLINK_CURSOR = `${CONTROL_PREFIX}?12l`;
+export const START_BLINK_CURSOR = `${CONTROL_PREFIX}\\?12h`;
+export const STOP_BLINK_CURSOR = `${CONTROL_PREFIX}\\?12l`;
 export const SAVE_CURSOR = `${CONTROL_PREFIX}s`;
 export const RESTORE_CURSOR = `${CONTROL_PREFIX}u`;
 export const SET_COLOR = `${CONTROL_PREFIX}(\\d+)(?:;(\\d+))?m`;

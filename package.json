@@ -1,7 +1,19 @@
 {
   "name": "node-terminal-simulator",
-  "version": "1.1.0",
-  "description": "Simulates and assert the terminal output including many special ANSI codes",
+  "version": "1.2.0",
+  "description": "Simulate and assert the terminal output including many special ANSI codes",
+  "author": {
+    "name": "Janik Schumacher (LoaderB0T)",
+    "url": "https://awdware.de"
+  },
+  "homepage": "https://github.com/LoaderB0T/node-terminal-simulator",
+  "bugs": {
+    "url": "https://github.com/LoaderB0T/node-terminal-simulator/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LoaderB0T/node-terminal-simulator.git"
+  },
   "main": "lib/index.js",
   "files": [
     "lib"
@@ -44,17 +56,5 @@
     "test",
     "assert",
     "string"
-  ],
-  "author": {
-    "name": "Janik Schumacher (LoaderB0T)",
-    "url": "https://twitter.com/TheLoaderB0T"
-  },
-  "homepage": "https://github.com/LoaderB0T/node-terminal-simulator",
-  "bugs": {
-    "url": "https://github.com/LoaderB0T/node-terminal-simulator/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/LoaderB0T/node-terminal-simulator.git"
-  }
+  ]
 }
