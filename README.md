@@ -78,6 +78,8 @@ console.log(t.text);
 assert(t.text === 'This is a new line.', 't.text should be "This is a new line."');
 ```
 
+TODO: Add advanced usage examples.
+
 ## Contributing 🧑🏻‍💻
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
