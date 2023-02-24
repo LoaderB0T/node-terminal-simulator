@@ -19,9 +19,10 @@
     "lib"
   ],
   "scripts": {
-    "lint": "yarn eslint ./src/**",
+    "preinstall": "npx only-allow pnpm",
+    "lint": "pnpm eslint ./src/**",
     "test": "jest",
-    "prebuild": "yarn rimraf ./lib",
+    "prebuild": "pnpm rimraf ./lib",
     "build": "tsc -p ."
   },
   "license": "MIT",
