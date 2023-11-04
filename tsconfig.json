@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
     "target": "ES2019",
-    "module": "CommonJS",
+    "module": "ESNext",
     "baseUrl": "./",
     "lib": ["ES2019", "ESNext"],
     "declaration": true,
     "outDir": "lib",
-    "rootDir": "./src",
+    "rootDir": ".",
     "strict": true,
     "types": ["node"],
     "sourceMap": true,
@@ -19,5 +19,5 @@
     "stripInternal": true
   },
   "include": ["src"],
-  "exclude": ["lib"]
+  "exclude": ["lib", "test"]
 }

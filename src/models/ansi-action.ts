@@ -5,7 +5,10 @@ export class AnsiAction {
   private readonly _action: (t: InternalTerminal, params: (string | undefined)[]) => void;
   public rest: string = '';
 
-  constructor(match: string, action: (t: InternalTerminal, params: (string | undefined)[]) => void) {
+  constructor(
+    match: string,
+    action: (t: InternalTerminal, params: (string | undefined)[]) => void
+  ) {
     this._match = match;
     this._action = action;
   }

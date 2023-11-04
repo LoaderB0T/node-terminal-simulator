@@ -1,5 +1,11 @@
+import { describe, expect, test, beforeEach } from '@jest/globals';
 import chalk from 'chalk';
-import { DO_CLEAR_LINE, DO_MOVE_LEFT_FULLY, DO_MOVE_RIGHT, DO_MOVE_UP } from '../src/consts/ansi-codes';
+import {
+  DO_CLEAR_LINE,
+  DO_MOVE_LEFT_FULLY,
+  DO_MOVE_RIGHT,
+  DO_MOVE_UP,
+} from '../src/consts/ansi-codes';
 import { Terminal } from '../src/index';
 
 describe('', () => {
@@ -99,7 +105,11 @@ describe('', () => {
   test('colors are ignored', () => {
     t = new Terminal([100, 3]);
     const testText =
-      chalk.red('red') + chalk.green('green') + chalk.blue('blue') + chalk.blueBright('blue\nBright') + chalk.bgRed('bgRed');
+      chalk.red('red') +
+      chalk.green('green') +
+      chalk.blue('blue') +
+      chalk.blueBright('blue\nBright') +
+      chalk.bgRed('bgRed');
 
     t.write(testText);
     expect(t.lines).toStrictEqual(['redgreenblueblue', 'BrightbgRed']);
