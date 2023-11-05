@@ -1,4 +1,5 @@
 [![npm](https://img.shields.io/npm/v/node-terminal-simulator?color=%2300d26a&style=for-the-badge)](https://www.npmjs.com/package/node-terminal-simulator)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/LoaderB0T/node-terminal-simulator/build.yml?branch=main&style=for-the-badge)](https://github.com/LoaderB0T/node-terminal-simulator/actions/workflows/build.yml)
 [![Sonar Quality Gate](https://img.shields.io/sonar/quality_gate/LoaderB0T_node-terminal-simulator?server=https%3A%2F%2Fsonarcloud.io&style=for-the-badge)](https://sonarcloud.io/summary/new_code?id=LoaderB0T_node-terminal-simulator)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/node-terminal-simulator?color=%23FF006F&label=Bundle%20Size&style=for-the-badge)](https://bundlephobia.com/package/node-terminal-simulator)
 
