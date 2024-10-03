@@ -1,11 +1,12 @@
+import { appendFileSync } from 'fs';
+
+import { Settings } from './settings';
 import { ansiActions } from '../consts/ansi-actions';
 import { CONTROL_PREFIX_FIRST_CHAR, DO_CONTROL_PREFIX } from '../consts/ansi-codes';
+import { ansiStyles } from '../consts/ansi-styles';
 import { TerminalKey } from '../consts/terminal-key';
-import { Settings } from './settings';
-import { appendFileSync } from 'fs';
 import { terminalKeyToValue } from '../consts/terminal-key-to-value';
 import { AnsiStyleKind, AnsiStyleMap } from '../types/ansi-style';
-import { ansiStyles } from '../consts/ansi-styles';
 
 export class InternalTerminal {
   private readonly _size: [number, number];

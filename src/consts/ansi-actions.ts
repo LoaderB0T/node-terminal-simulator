@@ -1,5 +1,3 @@
-import { AnsiAction } from '../models/ansi-action';
-import { AnsiStyleKind } from '../types/ansi-style';
 import {
   CLEAR_LINE,
   DELETE_LINE,
@@ -13,6 +11,8 @@ import {
   SHOW_CURSOR
 } from './ansi-codes';
 import { ansiStyles } from './ansi-styles';
+import { AnsiAction } from '../models/ansi-action';
+import { AnsiStyleKind } from '../types/ansi-style';
 
 export const ansiActions = [
   new AnsiAction(MOVE_UP, (t, allParams) => {

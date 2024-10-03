@@ -1,4 +1,5 @@
 import chalk from 'chalk';
+
 import { DO_MOVE_LEFT } from './consts/ansi-codes';
 import { Terminal } from './models/terminal';
 

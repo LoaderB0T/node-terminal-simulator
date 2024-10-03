@@ -1,9 +1,9 @@
-import { InternalTerminal } from './internal-terminal';
-import { TerminalKey } from '../consts/terminal-key';
-import { Stdout } from './stdout';
-import { Settings } from './settings';
 import { AnsiAction } from './ansi-action';
+import { InternalTerminal } from './internal-terminal';
+import { Settings } from './settings';
+import { Stdout } from './stdout';
 import { ansiActions } from '../consts/ansi-actions';
+import { TerminalKey } from '../consts/terminal-key';
 import { terminalKeyToValue } from '../consts/terminal-key-to-value';
 
 export class Terminal {
