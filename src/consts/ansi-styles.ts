@@ -1,4 +1,4 @@
-import { AnsiStyleCollection } from '../types/ansi-style';
+import { AnsiStyleCollection } from '../types/ansi-style.js';
 
 export const ansiStyles: AnsiStyleCollection = {
   reset: [0, 0],
@@ -41,5 +41,5 @@ export const ansiStyles: AnsiStyleCollection = {
   bgBlueBright: [104, 49],
   bgMagentaBright: [105, 49],
   bgCyanBright: [106, 49],
-  bgWhiteBright: [107, 49]
+  bgWhiteBright: [107, 49],
 };

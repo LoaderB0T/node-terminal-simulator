@@ -8,11 +8,11 @@ import {
   MOVE_RIGHT,
   MOVE_UP,
   SET_COLOR,
-  SHOW_CURSOR
-} from './ansi-codes';
-import { ansiStyles } from './ansi-styles';
-import { AnsiAction } from '../models/ansi-action';
-import { AnsiStyleKind } from '../types/ansi-style';
+  SHOW_CURSOR,
+} from './ansi-codes.js';
+import { ansiStyles } from './ansi-styles.js';
+import { AnsiAction } from '../models/ansi-action.js';
+import { AnsiStyleKind } from '../types/ansi-style.js';
 
 export const ansiActions = [
   new AnsiAction(MOVE_UP, (t, allParams) => {
@@ -100,5 +100,5 @@ export const ansiActions = [
         }
       });
     }
-  })
+  }),
 ];

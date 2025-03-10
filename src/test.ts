@@ -1,11 +1,21 @@
 import chalk from 'chalk';
 
-import { DO_MOVE_LEFT } from './consts/ansi-codes';
-import { Terminal } from './models/terminal';
+import { DO_MOVE_LEFT } from './consts/ansi-codes.js';
+import { Terminal } from './models/terminal.js';
 
 const t = new Terminal([100, 8]);
 
-const input = [chalk.blue('123456789'), DO_MOVE_LEFT, DO_MOVE_LEFT, chalk.red('a'), DO_MOVE_LEFT, DO_MOVE_LEFT, 'b', '\n', 'abc'];
+const input = [
+  chalk.blue('123456789'),
+  DO_MOVE_LEFT,
+  DO_MOVE_LEFT,
+  chalk.red('a'),
+  DO_MOVE_LEFT,
+  DO_MOVE_LEFT,
+  'b',
+  '\n',
+  'abc',
+];
 
 const text = input.join('');
 
