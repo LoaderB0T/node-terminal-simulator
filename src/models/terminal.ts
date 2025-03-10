@@ -1,10 +1,10 @@
-import { AnsiAction } from './ansi-action';
-import { InternalTerminal } from './internal-terminal';
-import { Settings } from './settings';
-import { Stdout } from './stdout';
-import { ansiActions } from '../consts/ansi-actions';
-import { TerminalKey } from '../consts/terminal-key';
-import { terminalKeyToValue } from '../consts/terminal-key-to-value';
+import { AnsiAction } from './ansi-action.js';
+import { InternalTerminal } from './internal-terminal.js';
+import { Settings } from './settings.js';
+import { Stdout } from './stdout.js';
+import { ansiActions } from '../consts/ansi-actions.js';
+import { terminalKeyToValue } from '../consts/terminal-key-to-value.js';
+import { TerminalKey } from '../consts/terminal-key.js';
 
 export class Terminal {
   private readonly _internalTerminal: InternalTerminal;

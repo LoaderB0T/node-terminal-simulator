@@ -1,5 +1,10 @@
-import { DO_KEY_ARROW_DOWN, DO_KEY_ARROW_LEFT, DO_KEY_ARROW_RIGHT, DO_KEY_ARROW_UP } from './ansi-codes';
-import { TerminalKey } from './terminal-key';
+import {
+  DO_KEY_ARROW_DOWN,
+  DO_KEY_ARROW_LEFT,
+  DO_KEY_ARROW_RIGHT,
+  DO_KEY_ARROW_UP,
+} from './ansi-codes.js';
+import { TerminalKey } from './terminal-key.js';
 
 export const terminalKeyToValue = (key: TerminalKey): string => {
   switch (key) {

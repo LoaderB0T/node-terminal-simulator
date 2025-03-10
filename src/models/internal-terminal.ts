@@ -1,12 +1,12 @@
 import { appendFileSync } from 'fs';
 
-import { Settings } from './settings';
-import { ansiActions } from '../consts/ansi-actions';
-import { CONTROL_PREFIX_FIRST_CHAR, DO_CONTROL_PREFIX } from '../consts/ansi-codes';
-import { ansiStyles } from '../consts/ansi-styles';
-import { TerminalKey } from '../consts/terminal-key';
-import { terminalKeyToValue } from '../consts/terminal-key-to-value';
-import { AnsiStyleKind, AnsiStyleMap } from '../types/ansi-style';
+import { Settings } from './settings.js';
+import { ansiActions } from '../consts/ansi-actions.js';
+import { CONTROL_PREFIX_FIRST_CHAR, DO_CONTROL_PREFIX } from '../consts/ansi-codes.js';
+import { ansiStyles } from '../consts/ansi-styles.js';
+import { terminalKeyToValue } from '../consts/terminal-key-to-value.js';
+import { TerminalKey } from '../consts/terminal-key.js';
+import { AnsiStyleKind, AnsiStyleMap } from '../types/ansi-style.js';
 
 export class InternalTerminal {
   private readonly _size: [number, number];
@@ -84,11 +84,18 @@ export class InternalTerminal {
       this.insertLine();
     }
     const fillEmptySpace =
-      this.cursorX > this.getCursorLine().length ? ' '.repeat(this.cursorX - this.getCursorLine().length) : '';
+      this.cursorX > this.getCursorLine().length
+        ? ' '.repeat(this.cursorX - this.getCursorLine().length)
+        : '';
     const newLineText =
-      this.getCursorLine().substring(0, this.cursorX) + fillEmptySpace + char + this.getCursorLine().substring(this.cursorX + 1);
+      this.getCursorLine().substring(0, this.cursorX) +
+      fillEmptySpace +
+      char +
+      this.getCursorLine().substring(this.cursorX + 1);
     this.setCursorLine(newLineText);
-    const existingStyles = this.currentStyles.find(s => s.x === this.cursorX && s.y === this.cursorY);
+    const existingStyles = this.currentStyles.find(
+      s => s.x === this.cursorX && s.y === this.cursorY
+    );
 
     if (existingStyles) {
       existingStyles.styles = [...this.activeStyles];
@@ -96,7 +103,7 @@ export class InternalTerminal {
       this.currentStyles.push({
         x: this.cursorX,
         y: this.cursorY,
-        styles: [...this.activeStyles]
+        styles: [...this.activeStyles],
       });
     }
     this.cursorX = this.cursorX + 1;

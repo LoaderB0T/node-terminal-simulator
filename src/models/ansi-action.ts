@@ -1,4 +1,4 @@
-import { InternalTerminal } from './internal-terminal';
+import { InternalTerminal } from './internal-terminal.js';
 
 export class AnsiAction {
   private readonly _match: string;
